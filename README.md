@@ -33,6 +33,7 @@ Intentionally crash the application and watch it self heal.
 
 **[Network](documentation/Network.md)** Allows you to request an HTTP url (from the pod), and renderes what it gets.
 
+sudo cd ..
 sudo rm -r demotoy/
 git clone https://github.com/pirsoscom/demotoy.git
 cd demotoy/
