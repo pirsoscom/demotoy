@@ -23,11 +23,11 @@ var stress_io_hogs = 2;
 var stress_vm_hogs = 2;
 var stress_vm_bytes = "1G";
 var stress_timeout = "15s";
-var stateBook="OK"
+var stateBook="✅ OK"
 var stateBookColor="green"
-var stateSock="OK"
+var stateSock="✅ OK"
 var stateSockColor="green"
-var stateKube="OK"
+var stateKube="✅ OK"
 var stateKubeColor="green"
 var loggedIn="ERROR"
 
@@ -168,7 +168,7 @@ app.get('/mergeBookOK',
 
 		console.log("   📥 simBookinfo - Simulating");
 		stateBook="Simulating Incident"
-		console.log("   📥 simBookinfo - Simulating Scaling");
+		console.log("   📥 simBookinfo - Scaling Deployment");
 		result=execSync('./scripts/bookinfo/1_simulate-incident-scale.sh');
 		console.log("   ✅ simBookinfo -  " + result);
 		console.log("");
@@ -234,7 +234,7 @@ app.get('/simBookinfo', function(req,res){
 
 		console.log("   📥 simBookinfo - Simulating");
 		stateBook="Simulating Incident"
-		console.log("   📥 simBookinfo - Simulating Scaling");
+		console.log("   📥 simBookinfo - Scaling Deployment");
 		result=execSync('./scripts/bookinfo/1_simulate-incident-scale.sh');
 		console.log("   ✅ simBookinfo -  " + result);
 		console.log("");
@@ -322,7 +322,7 @@ app.get('/simSockshop', function(req,res){
 		stateSock="Starting Simulation - LoggingIn"
 		ocLogin()
 		console.log("   📥 simSockshop - Simulating");
-		console.log("   📥 simSockshop - Simulating Scaling");
+		console.log("   📥 simSockshop - Scaling Deployment");
 		result=execSync('./scripts/sockshop/1_simulate-incident-scale.sh');
 		console.log("   ✅ simSockshop -  " + result);
 		console.log("");

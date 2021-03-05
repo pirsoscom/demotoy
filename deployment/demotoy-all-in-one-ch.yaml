@@ -1,0 +1,137 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demotoy-deployment
+  namespace: default
+  labels:
+    app: demotoy-app
+spec:
+    selector:
+      matchLabels:
+        app: demotoy
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: demotoy
+      spec:
+        containers:
+        - name: demotoy
+          image: niklaushirt/demotoy:1.0.0
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          env:
+          - name: TOKEN
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: TOKEN
+          - name: OCP_URL
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: OCP_URL
+          - name: NETCOOL_WEBHOOK_HUMIO
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: NETCOOL_WEBHOOK_HUMIO
+          - name: NETCOOL_WEBHOOK_INSTANA
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: NETCOOL_WEBHOOK_INSTANA
+          - name: NETCOOL_WEBHOOK_GIT
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: NETCOOL_WEBHOOK_GIT
+          - name: NETCOOL_WEBHOOK_METRICS
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: NETCOOL_WEBHOOK_METRICS
+          - name: NETCOOL_WEBHOOK_FALCO
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: NETCOOL_WEBHOOK_FALCO
+          - name: appgroupid_book
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: appgroupid_book
+          - name: appid_book
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: appid_book
+          - name: appgroupid_sock
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: appgroupid_sock
+          - name: appid_sock
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: appid_sock
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demotoy-service
+  namespace: default
+  labels:
+    app: demotoy-app
+spec:
+  type: ClusterIP
+  ports:
+    - targetPort: 3000
+      port: 3000
+      protocol: TCP
+      name: "http"
+  selector:
+    app: demotoy
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: demotoy-configmap-env
+  namespace: default
+data:
+  TOKEN: 'eyJhbGciOiJSUzI1NiIsImtpZCI6InRReFBmcTZpNllvQ05fVVNHNDNuYzFsQ1VCSzcxVWFwbEg2Sjhqa0w1czAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJ6ZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlY3JldC5uYW1lIjoiZGVtby1hZG1pbi10b2tlbi1kYjJ4eCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJkZW1vLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiZDkwM2ZhZWMtYjZiNy00ZTllLWEyZjUtNWFiNDdlZTNlNTJiIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OnplbjpkZW1vLWFkbWluIn0.hcb6roS0BLQzZAcedkwKxVpZw0LBHa1kLHkxVT-QW_itNoFwt52HHX5iDa3879ehj48tcZafC56o0jB6Z_nd-6Y6tnfPE_p128D5KGSdUNmcY3reUToxuxi8vnr0z2J7PJ1jYOnOppJ_rN8IdDPuRacCiJrVnUzSK_eDAuGxbBbH1ouAlmvJhFmSP3DDItvBSur0mo91Fm860yWFqasb5Mamo8DMrx4p_g_ADrJP-OooUtnkvGkDW6ki9xM0gmDWhC55dnV7TmdOdUc2dZKUO4J87zvU1vAVpFzqHPrNGNDmrKzjicW-ItvaK6wTiVKlNNniAQWGfCNE0gHokNZQ8Q'
+  OCP_URL: 'https://c113-e.eu-de.containers.cloud.ibm.com:32574'
+  NETCOOL_WEBHOOK_HUMIO: 'https://netcool.demo-noi.aiops-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/humio/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/b772dd26-50e2-4f7e-9190-806aa6205e28/njlLpozGhjWIBobyXogHf5ICFaPgd4K5m_5EcZW5Y4s'
+  NETCOOL_WEBHOOK_GIT: 'https://netcool.demo-noi.aiops-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/webhookincomming/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/df319ce1-84e7-4d21-8e09-c823a5e581a5/42jfMVelk1NwsmAcUX3m4uoIKPZOpLdqve0XQ1muR6o'
+  NETCOOL_WEBHOOK_METRICS: 'https://netcool.demo-noi.aiops-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/webhookincomming/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/973ffa0c-febe-41cf-bbe0-7c087d51972f/D2fovHgbLkoXqzXiredb0jVsZngb6NkJ4yoyps2jo40'
+  NETCOOL_WEBHOOK_FALCO: 'https://netcool.demo-noi.aiops-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/webhookincomming/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/82bc04bc-9dca-4fd9-aab7-2673f4923e80/bz1o9AYIIp1rhaLji3RtY3BOCETeeT1UOF88UmgUg7Y'
+  NETCOOL_WEBHOOK_INSTANA: 'https://netcool.demo-noi.aiops-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/webhookincomming/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/371480f7-c9f1-422b-acf1-db48d43ccae7/QHhJmKf1StqhPkxQ8yXknwKRTl0arRncrQtZhcjXzWQ'
+  appgroupid_book: zjecaqq2
+  appid_book: nir5ix68
+  appgroupid_sock: p8agtlvy
+  appid_sock: wvaw2akr
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: demotoy
+  namespace: default
+  labels:
+    app: demotoy-app
+spec:
+  subdomain: ''
+  to:
+    kind: Service
+    name: demotoy-service
+    weight: 100
+  port:
+    targetPort: http
+  wildcardPolicy: None

@@ -1,0 +1,4 @@
+NAME            STATUS   ROLES           AGE   VERSION
+10.194.163.10   Ready    master,worker   34h   v1.19.0+f173eb4
+10.194.163.20   Ready    master,worker   34h   v1.19.0+f173eb4
+10.194.163.52   Ready    master,worker   34h   v1.19.0+f173eb4
