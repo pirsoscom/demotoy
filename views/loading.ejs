@@ -1,0 +1,72 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script defer src="js/fontawesome-all.js"></script>
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+    <title>DemoToy</title>
+    
+    <style>
+        <% if( typeof background !== 'undefined' ) { %>
+            body {
+                background-image: url('images/<%= background %>.png');
+            }
+            .transparent {
+                background:#7f7f7f;
+                background:rgba(255,255,255,0.5);
+            }
+        <% } %>
+    </style> 
+    
+</head>
+<body onload=window.top.location.href="/home";>
+
+<div class="container">
+
+	<div class="jumbotron">
+		<div class="container">
+        	<div class="col-1">
+	  			<img src="images/<%=aiopsImage %>"/>
+		    </div>
+		  <div class="row">
+		    <div class="col-11">
+	  			<h1 class="display-4">CloudPak for WAIOps Demo Toy</h1>
+		    </div>
+		  </div>
+		</div>
+	  <p class="lead">CP4WAIOps Demo Control Center</p>
+	  <p><%=version %></p>
+	  <hr class="my-4">
+	  <h1><p>Loading.....<br/></h1>
+
+	</div>
+    
+ 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+<script>
+$(document).ready(function(){
+    console.log("loading page loaded.");
+    //window.open("/home"); 
+
+    $.ajax({
+            type: 'GET',
+            url: '/home',
+            success:function() {
+                console.log("redirected.");
+            }
+    });
+});
+</script>
+
+</body>
+</html>

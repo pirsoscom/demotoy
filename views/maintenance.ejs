@@ -1,0 +1,97 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script defer src="js/fontawesome-all.js"></script>
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+    <title>DemoToy</title>
+    
+    <style>
+        <% if( typeof background !== 'undefined' ) { %>
+            body {
+                background-image: url('images/<%= background %>.png');
+            }
+            .transparent {
+                background:#7f7f7f;
+                background:rgba(255,255,255,0.5);
+            }
+        <% } %>
+    </style> 
+    
+</head>
+<body>
+
+<div class="container">
+
+	<div class="jumbotron">
+		<div class="container">
+        	<div class="col-1">
+	  			<img src="images/<%=aiopsImage %>"/>
+		    </div>
+		  <div class="row">
+		    <div class="col-11">
+	  			<h1 class="display-4">CloudPak for WAIOps Demo Toy</h1>
+		    </div>
+		  </div>
+		</div>
+	  <p class="lead">CP4WAIOps Demo Control Center - Maintenance Console</p>
+	  <p><%=version %></p>
+	  <hr class="my-4">
+	  <p>Currently being served up by pod: <%=pod%> <br/>
+	  <%=sysInfoStr%> </p>
+	</div>
+    
+    <div class="container" >
+        <p>
+            <a href="home">home</a> | 
+            <a href="about.html">about</a>
+        </p>
+        <hr/>
+        
+        <div class="row">
+            <div class="col-md-4">
+            <p class="lead">Bookinfo <%=token %></p>
+
+
+
+
+            <form class="form-inline" method="GET" action="simBookinfo">
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-danger mb-2">Simulate Outage!</button>			  
+                </div>
+            </form>
+
+
+            <form class="form-inline" method="GET" action="mitigateBookinfo">
+                <button type="submit" class="btn btn-success mb-2">Mitigate Error</button>
+            </form>
+
+            <form class="form-inline" method="GET" action="test1">
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-primary mb-2">test1</button>
+                </div>
+            </form>
+
+            <form class="form-inline" method="GET" action="test2">
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-primary mb-2">test2</button>
+                </div>
+            </form>
+        </div>
+      
+        
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+</body>
+</html>
