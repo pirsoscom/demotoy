@@ -1,6 +1,0 @@
-#!/bin/bash
-
-docker build -t ibmicpcoc/kubetoy:2.6.1 .
-docker tag ibmicpcoc/kubetoy:2.6.1 ibmicpcoc/kubetoy:latest
-docker push ibmicpcoc/kubetoy:2.6.1
-docker push ibmicpcoc/kubetoy:latest

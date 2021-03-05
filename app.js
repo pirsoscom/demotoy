@@ -199,7 +199,8 @@ app.get('/mergeBookOK',
 		console.log("");
 		console.log("");
 		console.log("   📥 simBookinfo - Simulating Log Anomalies");
-		exec('./scripts/bookinfo/7_simulate-incident-logs.sh');
+		result=execSync('./scripts/bookinfo/7_simulate-incident-logs.sh');
+		console.log("   ✅ simBookinfo -  " + result);
 		console.log("   ✅ simBookinfo - Log Injection launched asynchronously");
 		console.log("");
 		console.log("");
@@ -320,7 +321,7 @@ app.get('/simSockshop', function(req,res){
 		console.log("");
 		console.log("---------------------------------------------------------------------------");
 		console.log("🚀 simSockshop - Start");
-		stateBook="Starting Simulation - LoggingIn"
+		stateSock="Starting Simulation - LoggingIn"
 		ocLogin()
 		console.log("   📥 simSockshop - Simulating");
 		console.log("   📥 simSockshop - Simulating Scaling");

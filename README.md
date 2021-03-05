@@ -33,12 +33,12 @@ Intentionally crash the application and watch it self heal.
 
 **[Network](documentation/Network.md)** Allows you to request an HTTP url (from the pod), and renderes what it gets.
 
-sudo cd ..
+cd ..
 sudo rm -r demotoy/
 git clone https://github.com/pirsoscom/demotoy.git
 cd demotoy/
-docker build -t niklaushirt/demotoy:test .
-docker push niklaushirt/demotoy:test
+docker build -t niklaushirt/demotoy:1.0.0 .
+docker push niklaushirt/demotoy:1.0.0
 
 
 oc create clusterrolebinding default-admin --clusterrole=cluster-admin --serviceaccount=default:default
