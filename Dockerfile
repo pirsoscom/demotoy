@@ -24,9 +24,9 @@ RUN  npm install \
     && npm audit fix
 
 COPY LICENSE .
-COPY README.md .
 COPY public ./public
 COPY views ./views
+COPY README.md .
 COPY scripts ./scripts
 COPY app.js .
 
