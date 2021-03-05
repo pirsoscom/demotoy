@@ -40,3 +40,6 @@ export TOKEN=eyJhbGciOiJSUzI1NiIsImtpZCI6IlJlWURNU1I4TXZQN2FvbDJDTDR2Tzh5VU9WWGl
 export OCP_URL=https://c113-e.eu-de.containers.cloud.ibm.com:32540
 
 export NETCOOL_WEBHOOK_HUMIO=https://netcool.demo-noi.test-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/humio/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/c625548a-2c8b-455c-8ae0-0467a7461ea4/NWe13mawi8R9yizVuDl311NF4K_KxU98SpOo_hNPz7o
+
+
+export NETCOOL_WEBHOOK_INSTANA=https://netcool.demo-noi.test-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/webhookincomming/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/3c543bca-35e2-4260-966e-29c9f79edc88/Uw34hB680W-gYXjJzDc42q2G6n1Ev4t4nX8-y5h901U
