@@ -201,7 +201,6 @@ app.get('/mergeBookOK',
 		console.log("   📥 simBookinfo - Simulating Log Anomalies");
 		result=execSync('./scripts/bookinfo/7_simulate-incident-logs.sh');
 		console.log("   ✅ simBookinfo -  " + result);
-		console.log("   ✅ simBookinfo - Log Injection launched asynchronously");
 		console.log("");
 		console.log("");
 
@@ -265,7 +264,6 @@ app.get('/simBookinfo', function(req,res){
 		console.log("   ✅ simBookinfo -  " + result);
 		console.log("");
 		console.log("");
-
 		console.log("   📥 simBookinfo - Simulating Log Anomalies");
 		result=execSync('./scripts/bookinfo/7_simulate-incident-logs.sh');
 		console.log("   ✅ simBookinfo -  " + result);
@@ -329,11 +327,17 @@ app.get('/simSockshop', function(req,res){
 		console.log("   ✅ simSockshop -  " + result);
 		console.log("");
 		console.log("");
-		console.log("   📥 simBookinfo - Simulating Humio");
+		console.log("   📥 simSockshop - Simulating Humio");
 		result=execSync('./scripts/sockshop/6_simulate-incident-humio.sh');
 		console.log("   ✅ simSockshop -  " + result);
 		console.log("");
 		console.log("");
+		console.log("   📥 simSockshop - Simulating Log Anomalies");
+		result=execSync('./scripts/sockshop/7_simulate-incident-logs.sh');
+		console.log("   ✅ simSockshop -  " + result);
+		console.log("");
+		console.log("");
+
 		stateSock="❌ Incident"
 		stateSockColor="red"
 
