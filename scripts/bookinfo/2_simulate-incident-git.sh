@@ -1,4 +1,5 @@
-if [[ $NETCOOL_WEBHOOK_GIT == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_GIT == "" ]];
+#!/bin/bash
+f [[ $NETCOOL_WEBHOOK_GIT == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_GIT == "" ]];
 then
       echo "❌ Skipping Git events injection" >> /tmp/incident.log
 else

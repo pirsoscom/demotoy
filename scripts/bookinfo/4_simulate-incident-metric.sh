@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ $NETCOOL_WEBHOOK_METRICS == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_METRICS == "" ]];
 then
       echo "❌ Skipping Metrics events injection" >> /tmp/incident.log

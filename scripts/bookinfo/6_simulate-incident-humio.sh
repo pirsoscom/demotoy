@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ $NETCOOL_WEBHOOK_HUMIO == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_HUMIO == "" ]];
 then
       echo "❌ Skipping Humio events injection" >> /tmp/incident.log

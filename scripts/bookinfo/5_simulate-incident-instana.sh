@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ $NETCOOL_WEBHOOK_INSTANA == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_INSTANA == "" ]];
 then
       echo "❌ Skipping Instana events injection" >> /tmp/incident.log

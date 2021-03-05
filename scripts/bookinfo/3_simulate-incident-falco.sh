@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ $NETCOOL_WEBHOOK_FALCO == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_FALCO == "" ]];
 then
       echo "❌ Skipping Falco events injection" >> /tmp/incident.log
