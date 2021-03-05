@@ -176,7 +176,7 @@ app.get('/mergeBookOK',
 	
 		console.log("simBookinfo - Simulating");
 		stateBook="Simulating Incident"
-		result=exec('./scripts/bookinfo/incident-simulate.sh');
+		result=execSync('./scripts/bookinfo/incident-simulate.sh');
 		console.log("simBookinfo - Simulating");
 		stateBook=" Incident ❌"
 		stateBookColor="red"
