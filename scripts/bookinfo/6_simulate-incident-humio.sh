@@ -2,6 +2,7 @@ if [[ $NETCOOL_WEBHOOK_HUMIO == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_HUMIO
 then
       echo "❌ Skipping Humio events injection" >> /tmp/incident.log
 else
+      echo "nameserver 8.8.8.8" > /etc/resolv.conf
       echo "✅ Injecting Humio Events" >> /tmp/incident.log
       input="./scripts/bookinfo/error_event.json"
       while IFS= read -r line

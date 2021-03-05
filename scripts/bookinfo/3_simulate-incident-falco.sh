@@ -2,6 +2,7 @@ if [[ $NETCOOL_WEBHOOK_FALCO == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_FALCO
 then
       echo "❌ Skipping Falco events injection" >> /tmp/incident.log
 else
+      echo "nameserver 8.8.8.8" > /etc/resolv.conf
       echo "✅ Falco Push"
       input="./scripts/bookinfo/falco_push.json" >> /tmp/incident.log
       while IFS= read -r line

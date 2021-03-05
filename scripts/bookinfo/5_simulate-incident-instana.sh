@@ -2,6 +2,7 @@ if [[ $NETCOOL_WEBHOOK_INSTANA == "not_configured" ]] || [[ $NETCOOL_WEBHOOK_INS
 then
       echo "❌ Skipping Instana events injection" >> /tmp/incident.log
 else
+      echo "nameserver 8.8.8.8" > /etc/resolv.conf
       echo "✅ Instana Push" >> /tmp/incident.log
       input="./scripts/bookinfo/instana_push.json"
       while IFS= read -r line
