@@ -176,8 +176,19 @@ app.get('/mergeBookOK',
 	
 		console.log("simBookinfo - Simulating");
 		stateBook="Simulating Incident"
-		result=execSync('./scripts/bookinfo/incident-simulate.sh');
-		console.log("simBookinfo - Simulating");
+		console.log("simBookinfo - Simulating Scaling");
+		result=exec('./scripts/bookinfo/1_simulate-incident-scale.sh');
+		console.log("simBookinfo - Simulating Git");
+		result=exec('./scripts/bookinfo/2_simulate-incident-git.sh');
+		console.log("simBookinfo - Simulating Falco");
+		result=exec('./scripts/bookinfo/3_simulate-incident-falco.sh');
+		console.log("simBookinfo - Simulating Metric");
+		result=exec('./scripts/bookinfo/4_simulate-incident-metric.sh');
+		console.log("simBookinfo - Simulating Instana");
+		result=exec('./scripts/bookinfo/5_simulate-incident-instana.sh');
+		console.log("simBookinfo - Simulating Humio");
+		result=exec('./scripts/bookinfo/6_simulate-incident-humio.sh');
+
 		stateBook=" Incident ❌"
 		stateBookColor="red"
 		console.log("simBookinfo - Done: " + result);
