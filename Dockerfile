@@ -13,15 +13,13 @@ RUN \
   rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
 
+RUN wget https://github.com/openshift/okd/releases/download/4.6.0-0.okd-2021-01-23-132511/openshift-client-linux-4.6.0-0.okd-2021-01-23-132511.tar.gz && tar xfvz openshift-client-linux-4.6.0-0.okd-2021-01-23-132511.tar.gz && mv oc /usr/local/bin && mv kubectl /usr/local/bin/ && rm openshift-client-linux-4.6.0-0.okd-2021-01-23-132511.tar.gz
+
+
 RUN mkdir /app
 WORKDIR /app
 
-COPY app.js . 
-COPY LICENSE .
 COPY package.json .
-COPY README.md .
-COPY views ./views
-COPY public ./public
 
 RUN apk --no-cache --virtual build-dependencies add \
     python \
@@ -30,6 +28,14 @@ RUN apk --no-cache --virtual build-dependencies add \
     && npm install \
     && npm audit fix \
     && apk del build-dependencies
+
+COPY LICENSE .
+COPY README.md .
+COPY public ./public
+COPY views ./views
+COPY scripts ./scripts
+COPY app.js .
+
 
 EXPOSE 3000
 
