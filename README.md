@@ -50,3 +50,8 @@ export NETCOOL_WEBHOOK_HUMIO=https://netcool.demo-noi.test-a376efc1170b9b8ace642
 
 
 export NETCOOL_WEBHOOK_INSTANA=https://netcool.demo-noi.test-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/webhookincomming/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/3c543bca-35e2-4260-966e-29c9f79edc88/Uw34hB680W-gYXjJzDc42q2G6n1Ev4t4nX8-y5h901U
+
+
+export appgroupid_book=jd7pwaie
+export appid_book=y0cagms1
+

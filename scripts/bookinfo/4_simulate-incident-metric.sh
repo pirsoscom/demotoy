@@ -4,12 +4,12 @@ then
       echo "❌ Skipping Metrics events injection" 
 else
       echo "nameserver 8.8.8.8" > /etc/resolv.conf
-      echo "✅ Metrics Push"
+      echo "🚚  Metrics Push"
       input="./scripts/bookinfo/metrics_push.json" 
       while IFS= read -r line
       do
         export my_timestamp=$(date +%s)000
-        echo "📥 Injecting Event at: $my_timestamp" 
+        echo "     🔧 Injecting Event at: $my_timestamp" 
 
         curl --insecure -X "POST" "$NETCOOL_WEBHOOK_METRICS" \
           -H 'Content-Type: application/json; charset=utf-8' \

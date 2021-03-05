@@ -5,7 +5,7 @@ then
 else
       echo "nameserver 8.8.8.8" > /etc/resolv.conf
       echo "🚚 Injecting Humio Events" 
-      input="./scripts/bookinfo/error_event.json"
+      input="./scripts/sockshop/error_event.json"
       while IFS= read -r line
       do
         export my_timestamp=$(date +%s)000

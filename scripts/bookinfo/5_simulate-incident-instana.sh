@@ -4,12 +4,12 @@ then
       echo "❌ Skipping Instana events injection" 
 else
       echo "nameserver 8.8.8.8" > /etc/resolv.conf
-      echo "✅ Instana Push" 
+      echo "🚚 Instana Push" 
       input="./scripts/bookinfo/instana_push.json"
       while IFS= read -r line
       do
         export my_timestamp=$(date +%s)000
-        echo "📥 Injecting Event at: $my_timestamp" 
+        echo "     🔧 Injecting Event at: $my_timestamp" 
 
         curl --insecure -X "POST" "$NETCOOL_WEBHOOK_INSTANA" \
           -H 'Content-Type: application/json; charset=utf-8' \

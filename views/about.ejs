@@ -55,45 +55,21 @@
         
         <div class="row">
             <div class="col-md-4">
-                    <p class="lead" style="color:<%=stateBookColor %>;font-weight: bolder;">Bookinfo <%=stateBook %></p>
+            <p class="lead" style="color:<%=stateBookColor %>;font-weight: bolder;">About</p>
+
+<p  style="color:white;font-weight: bold;">About DemoToy <%=version %></p>
+
+<p  style="color:white;font-weight: normal;">This application is a simple Node.js application that is expected to run in a container deployed by kubernetes. It was created to help explore IBM CloudPak for Watson AIOps by allowing the user to simulate incidents on the demo applications.</p>
+<p  style="color:white;font-weight: normal;">This app uses Bootstrap 4. All the files have been copied locally to this application so Internet connectivity is not required and can work in an air-gapped system.</p>
+<p  style="color:white;font-weight: normal;">The app was written by by Niklaus Hirt (nikh@ch.ibm.com), very much based on the work done by Jim Conallen (jconallen@us.ibm.com) and is made available under the Apache 2.0 license. If you find any bugs, create an issue on the GitHub site, and we'll do what we can to fix.</p> 
+            
 
 
-                    <form class="form-inline" method="GET" action="mergeBook">
-                        <div class="input-group-prepend">
-                            <button type="submit" class="btn btn-primary mb-2">Simulate Git Merge Pull</button>
-                        </div>
-                    </form>
-
-                    <form class="form-inline" method="GET" action="simBookinfo">
-                        <div class="input-group-prepend">
-                            <button type="submit" class="btn btn-danger mb-2">Simulate Outage!</button>			  
-                        </div>
-                    </form>
-
-
-                    <form class="form-inline" method="GET" action="mitigateBookinfo">
-                        <button type="submit" class="btn btn-success mb-2">Mitigate Error</button>
-                    </form>
-
-            </div>
+         
+        </div>
       
-            <div class="col-md-4">
-                    <p class="lead" style="color:<%=stateSockColor %>;font-weight: bolder;">Sockshop <%=stateSock %></p>
-
-
-                    <form class="form-inline" method="GET" action="simSockshop">
-                        <div class="input-group-prepend">
-                            <button type="submit" class="btn btn-danger mb-2">Simulate Outage!</button>			  
-                        </div>
-                    </form>
-
-
-                    <form class="form-inline" method="GET" action="mitigateSockshop">
-                        <button type="submit" class="btn btn-success mb-2">Mitigate Error</button>
-                    </form>
-
-            </div>
-    </div>
+        
+</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Simulating Sockshop Catalogue outage"
 
 

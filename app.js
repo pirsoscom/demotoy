@@ -25,7 +25,13 @@ var stress_vm_bytes = "1G";
 var stress_timeout = "15s";
 var stateBook="OK"
 var stateBookColor="green"
+var stateSock="OK"
+var stateSockColor="green"
+var stateKube="OK"
+var stateKubeColor="green"
 var loggedIn="ERROR"
+
+var result="test"
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
@@ -82,33 +88,6 @@ function ocLogin(){
 // ----------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------
 
-app.get('/simBookinfo', function(req,res){
-	console.log("simBookinfo - Start");
-	stateBook="Starting Simulation - LoggingIn"
-	ocLogin()
-	stateBook="Simulating Incident"
-	result=execSync('./scripts/bookinfo/incident-simulate.sh');
-
-	stateBook="❌ Incident"
-	stateBookColor="red"
-
-	console.log("simBookinfo - Done: " + result);
-	res.redirect('home');
-});
-
-
-app.get('/mitigateBookinfo', function(req,res){
-	console.log("mitigateBookinfo - Start");
-
-	//ocLogin()
-	result=execSync('./scripts/bookinfo/incident-remove.sh');
-
-	stateBook="OK"
-	stateBookColor="green"
-
-	console.log("mitigateBookinfo - Done: " + result);
-	res.redirect('home');
-});
 
 
 
@@ -149,13 +128,22 @@ app.get('/health', function(req,res){
 
 
 
-
+// ----------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+// BOOKINFO 
+// ----------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
 
 app.get('/mergeBook',  
 	function(req, res) {
-		console.log("simBookinfo - Start");
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+		console.log("🚀 simBookinfoGit - Show");
+		console.log("---------------------------------------------------------------------------");
 		stateBook="Starting Simulation - LoggingIn"
 		//ocLogin()
+
+		console.log("");
         res.render('book-merge', 
             { 
                 "pod": pod, 
@@ -173,32 +161,57 @@ app.get('/mergeBook',
 
 app.get('/mergeBookOK',  
 	function(req, res) {
-	
-		console.log("simBookinfo - Simulating");
-		stateBook="Simulating Incident"
-		console.log("simBookinfo - Simulating Scaling");
-		result=execSync('./scripts/bookinfo/1_simulate-incident-scale.sh');
-		console.log("simBookinfo - Done " + result);
-		console.log("simBookinfo - Simulating Git");
-		result=execSync('./scripts/bookinfo/2_simulate-incident-git.sh');
-		console.log("simBookinfo - Done " + result);
-		console.log("simBookinfo - Simulating Falco");
-		result=execSync('./scripts/bookinfo/3_simulate-incident-falco.sh');
-		console.log("simBookinfo - Done " + result);
-		console.log("simBookinfo - Simulating Metric");
-		result=execSync('./scripts/bookinfo/4_simulate-incident-metric.sh');
-		console.log("simBookinfo - Done " + result);
-		console.log("simBookinfo - Simulating Instana");
-		result=execSync('./scripts/bookinfo/5_simulate-incident-instana.sh');
-		console.log("simBookinfo - Done " + result);
-		console.log("simBookinfo - Simulating Humio");
-		result=execSync('./scripts/bookinfo/6_simulate-incident-humio.sh');
-		console.log("simBookinfo - Done " + result);
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+		console.log("🚀 simBookinfoMerge - Start");
+		console.log("---------------------------------------------------------------------------");
 
+		console.log("   📥 simBookinfo - Simulating");
+		stateBook="Simulating Incident"
+		console.log("   📥 simBookinfo - Simulating Scaling");
+		result=execSync('./scripts/bookinfo/1_simulate-incident-scale.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Git");
+		result=execSync('./scripts/bookinfo/2_simulate-incident-git.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Falco");
+		result=execSync('./scripts/bookinfo/3_simulate-incident-falco.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Metric");
+		result=execSync('./scripts/bookinfo/4_simulate-incident-metric.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Instana");
+		result=execSync('./scripts/bookinfo/5_simulate-incident-instana.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Humio");
+		result=execSync('./scripts/bookinfo/6_simulate-incident-humio.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Log Anomalies");
+		exec('./scripts/bookinfo/7_simulate-incident-logs.sh');
+		console.log("   ✅ simBookinfo - Log Injection launched asynchronously");
+		console.log("");
+		console.log("");
 
 		stateBook=" Incident ❌"
 		stateBookColor="red"
-		console.log("simBookinfo - Done: " + result);
+		console.log("---------------------------------------------------------------------------");
+		console.log("✅ simBookinfo - Done");
+		console.log("---------------------------------------------------------------------------");
+		console.log("");
+
+
         res.render('book-merge-done', 
             { 
                 "pod": pod, 
@@ -212,6 +225,149 @@ app.get('/mergeBookOK',
             });
 	}
 );
+
+app.get('/simBookinfo', function(req,res){
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+		console.log("🚀 simBookinfoMerge - Start");
+		console.log("---------------------------------------------------------------------------");
+
+		console.log("   📥 simBookinfo - Simulating");
+		stateBook="Simulating Incident"
+		console.log("   📥 simBookinfo - Simulating Scaling");
+		result=execSync('./scripts/bookinfo/1_simulate-incident-scale.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Git");
+		result=execSync('./scripts/bookinfo/2_simulate-incident-git.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Falco");
+		result=execSync('./scripts/bookinfo/3_simulate-incident-falco.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Metric");
+		result=execSync('./scripts/bookinfo/4_simulate-incident-metric.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Instana");
+		result=execSync('./scripts/bookinfo/5_simulate-incident-instana.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Humio");
+		result=execSync('./scripts/bookinfo/6_simulate-incident-humio.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+
+		console.log("   📥 simBookinfo - Simulating Log Anomalies");
+		result=execSync('./scripts/bookinfo/7_simulate-incident-logs.sh');
+		console.log("   ✅ simBookinfo -  " + result);
+		console.log("");
+		console.log("");
+
+		stateBook=" Incident ❌"
+		stateBookColor="red"
+		console.log("---------------------------------------------------------------------------");
+		console.log("✅ simBookinfo - Done");
+		console.log("---------------------------------------------------------------------------");
+		console.log("");
+
+
+		res.redirect('home');
+});
+
+
+app.get('/mitigateBookinfo', function(req,res){
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+
+		console.log("🚀 mitigateBookinfo - Start");
+
+		//ocLogin()
+		result=execSync('./scripts/bookinfo/incident-remove.sh');
+
+		stateBook="OK"
+		stateBookColor="green"
+
+		console.log("✅ mitigateBookinfo - Done: " + result);
+
+		console.log("---------------------------------------------------------------------------");
+		console.log("");
+
+		res.redirect('home');
+});
+
+
+
+
+
+
+
+// ----------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+// SOCKSHOP 
+// ----------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+
+
+app.get('/simSockshop', function(req,res){
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+		console.log("🚀 simSockshop - Start");
+		stateBook="Starting Simulation - LoggingIn"
+		ocLogin()
+		console.log("   📥 simSockshop - Simulating");
+		console.log("   📥 simSockshop - Simulating Scaling");
+		result=execSync('./scripts/sockshop/1_simulate-incident-scale.sh');
+		console.log("   ✅ simSockshop -  " + result);
+		console.log("");
+		console.log("");
+		console.log("   📥 simBookinfo - Simulating Humio");
+		result=execSync('./scripts/sockshop/6_simulate-incident-humio.sh');
+		console.log("   ✅ simSockshop -  " + result);
+		console.log("");
+		console.log("");
+		stateSock="❌ Incident"
+		stateSockColor="red"
+
+
+
+		console.log("---------------------------------------------------------------------------");
+		console.log("✅ simSockshop - Done");
+		console.log("---------------------------------------------------------------------------");
+		console.log("");
+
+		res.redirect('home');
+});
+
+
+app.get('/mitigateSockshop', function(req,res){
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+
+		console.log("🚀 mitigateSockshop - Start");
+		ocLogin()
+		result=execSync('./scripts/sockshop/incident-remove.sh');
+		stateSock="OK"
+		stateSockColor="green"
+
+		console.log("✅ mitigateSockshop - Done: " + result);
+
+		console.log("---------------------------------------------------------------------------");
+		console.log("");
+
+		res.redirect('home');
+});
+
+
+
+
 
 app.get('/maintenance',  
 	function(req, res) {
@@ -233,11 +389,31 @@ app.get('/maintenance',
 
 app.get('/home',  
 	function(req, res) {
-		console.log("home");
-
-
-		
+		console.log("Loading Home");
+		ocLogin()
         res.render('home', 
+            { 
+                "pod": pod, 
+                "aiopsImage": aiopsImage, 
+                "background": backgroundImage,
+                "stateBook": stateBook, 
+                "stateBookColor": stateBookColor, 
+                "stateSock": stateSock, 
+                "stateSockColor": stateSockColor, 
+                "stateKube": stateKube, 
+                "stateKubeColor": stateKubeColor, 
+                "version": appVersion, 
+                "sysInfoStr": sysInfoStr,
+            });
+			console.log("Loading Home - Done");
+	}
+);
+
+
+app.get('/about',  
+	function(req, res) {
+		console.log("Loading About");
+        res.render('about', 
             { 
                 "pod": pod, 
                 "aiopsImage": aiopsImage, 
@@ -247,18 +423,14 @@ app.get('/home',
                 "version": appVersion, 
                 "sysInfoStr": sysInfoStr,
             });
-			console.log("Loading - Done");
-
+			console.log("Loading About - Done");
 	}
 );
-
-
-
 
 app.get('/loading',  
 	function(req, res) {
 		console.log("Loading - Openshift Login - Start");
-		ocLogin()
+		//ocLogin()
 		console.log("Loading - Openshift Login - Done");
 		console.log(loggedIn);
 
