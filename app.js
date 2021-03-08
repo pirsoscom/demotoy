@@ -30,7 +30,8 @@ var stateSockColor="green"
 var stateKube="✅ OK"
 var stateKubeColor="green"
 var loggedIn="ERROR"
-
+var accesstoken = ""
+var accessOK=""
 var result="test"
 
 var app = express();
@@ -56,6 +57,8 @@ var aiopsImage = "logo.png";
 
 var token=process.env.TOKEN;
 var ocp_url=process.env.OCP_URL;
+var sec_token=process.env.SEC_TOKEN;
+
 
 function healthStatus(){
 	if( healthy ) {
@@ -376,41 +379,61 @@ app.get('/mitigateSockshop', function(req,res){
 
 app.get('/maintenance',  
 	function(req, res) {
-        var token = req.query.token;
-		var status = healthStatus();
-        res.render('maintenance', 
-            { 
-                "pod": pod, 
-                "aiopsImage": aiopsImage, 
-                "background": backgroundImage,
-                "stateBook": stateBook, 
-                "stateBookColor": stateBookColor, 
-                "version": appVersion, 
-                "sysInfoStr": sysInfoStr,
-                "token": token,
-            });
+		if( accessOK.toString() =="GoodToGo" ) {
+			ocLogin()
+			res.render('maintenance', 
+				{ 
+					"pod": pod, 
+					"aiopsImage": aiopsImage, 
+					"background": backgroundImage,
+					"stateBook": stateBook, 
+					"stateBookColor": stateBookColor, 
+					"stateSock": stateSock, 
+					"stateSockColor": stateSockColor, 
+					"stateKube": stateKube, 
+					"stateKubeColor": stateKubeColor, 
+					"version": appVersion, 
+					"sysInfoStr": sysInfoStr,
+				});
+				console.log("Loading Home - Done");
+		} else {
+			res.status(500);
+			console.log("NOT OK........");
+			res.redirect('error');
+		}
+
+
 	}
 );
 
 app.get('/home',  
 	function(req, res) {
 		console.log("Loading Home");
-		ocLogin()
-        res.render('home', 
-            { 
-                "pod": pod, 
-                "aiopsImage": aiopsImage, 
-                "background": backgroundImage,
-                "stateBook": stateBook, 
-                "stateBookColor": stateBookColor, 
-                "stateSock": stateSock, 
-                "stateSockColor": stateSockColor, 
-                "stateKube": stateKube, 
-                "stateKubeColor": stateKubeColor, 
-                "version": appVersion, 
-                "sysInfoStr": sysInfoStr,
-            });
-			console.log("Loading Home - Done");
+		if( accessOK.toString() =="GoodToGo" ) {
+			ocLogin()
+			res.render('home', 
+				{ 
+					"pod": pod, 
+					"aiopsImage": aiopsImage, 
+					"background": backgroundImage,
+					"stateBook": stateBook, 
+					"stateBookColor": stateBookColor, 
+					"stateSock": stateSock, 
+					"stateSockColor": stateSockColor, 
+					"stateKube": stateKube, 
+					"stateKubeColor": stateKubeColor, 
+					"version": appVersion, 
+					"sysInfoStr": sysInfoStr,
+				});
+				console.log("Loading Home - Done");
+		} else {
+			res.status(500);
+			console.log("NOT OK........");
+			res.redirect('error');
+		}
+
+
+	
 	}
 );
 
@@ -432,14 +455,41 @@ app.get('/about',
 	}
 );
 
+
+app.get('/error',  
+	function(req, res) {
+		console.log("Loading Error");
+        res.render('error', 
+            { 
+                "pod": pod, 
+                "aiopsImage": aiopsImage, 
+                "background": backgroundImage,
+                "stateBook": stateBook, 
+                "stateBookColor": stateBookColor, 
+                "version": appVersion, 
+                "sysInfoStr": sysInfoStr,
+            });
+			console.log("Loading About - Done");
+	}
+);
+
 app.get('/loading',  
 	function(req, res) {
+		
+		if( accessOK.toString() =="GoodToGo" ) {
+			res.status(200);
+			res.redirect('home');
+		} else {
+			res.status(500);
+			console.log("NOT OK........");
+			res.redirect('error');
+		}
 		console.log("Loading - Openshift Login - Start");
 		//ocLogin()
 		console.log("Loading - Openshift Login - Done");
-		console.log(loggedIn);
 
-		res.redirect('home');
+
+
 	}
 );
 
@@ -449,8 +499,17 @@ app.get('/version', function(req,res){
 
 app.get('/',  
 	function(req, res) {
-		console.log("Loading - Start");
-		res.redirect('loading');
+		accesstoken = req.query.accesstoken;
+
+		if( accesstoken.toString() ==sec_token.toString() ) {
+			console.log("Loading - Start");
+			accessOK="GoodToGo"
+			res.redirect('loading');
+		} else {
+			console.log("NOT OK........");
+			res.redirect('error');
+		}
+
 	}
 );
 

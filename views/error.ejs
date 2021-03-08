@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="icon" type="image/png" href="images/duck.png">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script defer src="js/fontawesome-all.js"></script>
+	<link rel="shortcut icon" href="images/favicon.ico">
 
-    <title>Kubetoy Error</title>
+    <title>DemoToy</title>
+    
     <style>
         <% if( typeof background !== 'undefined' ) { %>
             body {
@@ -20,30 +22,51 @@
             }
         <% } %>
     </style> 
+    
 </head>
 <body>
+
 <div class="container">
 
+	<div class="jumbotron">
+		<div class="container">
+  
+		  <div class="row">
+		    <div class="col-11">
+	  			<h2 class="display-5">CloudPak for Watson AIOps </h2>
+                <h1 class="display-2">🧸 DemoToy</h1>
 
-<p>pod: <%=pod%> </p>
-<p>
-    <a href="home">home</a> | 
-        <% if( filesystem ) { %><a href="files">filesystem</a> | <% } %> 
-        <a href="config">config maps and secrets</a> | 
-        <a href="networking">networking</a> | 
-        <a href="about.html">about</a>
-</p>
-<hr/>
+		    </div>
+		  </div>
+		</div>
+    	  <hr class="my-4">
+	  <p class="display-6">CP4WAIOps Demo Control Center</p>
+	  <p><%=version %></p>
+	  <hr class="my-4">
+	  <p>Currently being served up by pod: <%=pod%> <br/>
+	  <%=sysInfoStr%> </p>
+	</div>
+    
+    <div class="container" >
+        <p>
+            <a href="home">home</a> | 
+            <a href="about">about</a>
+        </p>
+        <hr/>
+        
+        <div class="row">
+            <div class="col-md-4">
+            <p class="lead" style="color:red;font-weight: bolder;">Access Error</p>
 
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Error</h5>
-	<pre><%=msg%></pre>
-  </div>
-</div>
+
+<p  style="color:white;font-weight: normal;">Please provide a valid access token.</p>
+            
 
 
-
+         
+        </div>
+      
+        
 </div>
 
     <!-- Optional JavaScript -->
@@ -51,5 +74,6 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    
 </body>
 </html>

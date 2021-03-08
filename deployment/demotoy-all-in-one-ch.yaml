@@ -83,6 +83,11 @@ spec:
               configMapKeyRef:
                 name: demotoy-configmap-env
                 key: appid_sock
+          - name: SEC_TOKEN
+            valueFrom: 
+              configMapKeyRef:
+                name: demotoy-configmap-env
+                key: SEC_TOKEN 
 ---
 apiVersion: v1
 kind: Service
@@ -107,6 +112,7 @@ metadata:
   name: demotoy-configmap-env
   namespace: default
 data:
+  SEC_TOKEN: 'demo'
   TOKEN: 'eyJhbGciOiJSUzI1NiIsImtpZCI6InRReFBmcTZpNllvQ05fVVNHNDNuYzFsQ1VCSzcxVWFwbEg2Sjhqa0w1czAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJ6ZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlY3JldC5uYW1lIjoiZGVtby1hZG1pbi10b2tlbi1kYjJ4eCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJkZW1vLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiZDkwM2ZhZWMtYjZiNy00ZTllLWEyZjUtNWFiNDdlZTNlNTJiIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OnplbjpkZW1vLWFkbWluIn0.hcb6roS0BLQzZAcedkwKxVpZw0LBHa1kLHkxVT-QW_itNoFwt52HHX5iDa3879ehj48tcZafC56o0jB6Z_nd-6Y6tnfPE_p128D5KGSdUNmcY3reUToxuxi8vnr0z2J7PJ1jYOnOppJ_rN8IdDPuRacCiJrVnUzSK_eDAuGxbBbH1ouAlmvJhFmSP3DDItvBSur0mo91Fm860yWFqasb5Mamo8DMrx4p_g_ADrJP-OooUtnkvGkDW6ki9xM0gmDWhC55dnV7TmdOdUc2dZKUO4J87zvU1vAVpFzqHPrNGNDmrKzjicW-ItvaK6wTiVKlNNniAQWGfCNE0gHokNZQ8Q'
   OCP_URL: 'https://c113-e.eu-de.containers.cloud.ibm.com:32574'
   NETCOOL_WEBHOOK_HUMIO: 'https://netcool.demo-noi.aiops-a376efc1170b9b8ace6422196c51e491-0000.eu-de.containers.appdomain.cloud/norml/webhook/humio/cfd95b7e-3bc7-4006-a4a8-a73a79c71255/b772dd26-50e2-4f7e-9190-806aa6205e28/njlLpozGhjWIBobyXogHf5ICFaPgd4K5m_5EcZW5Y4s'
