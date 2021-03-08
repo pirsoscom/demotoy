@@ -11,9 +11,7 @@ RUN \
   tar xfvz openshift-client-linux-4.6.0-0.okd-2021-01-23-132511.tar.gz && \
   mv oc /usr/local/bin && \
   mv kubectl /usr/local/bin/ && \
-  rm openshift-client-linux-4.6.0-0.okd-2021-01-23-132511.tar.gz && \
-  python3-pip && \
-  pip install slack-cleaner2
+  rm openshift-client-linux-4.6.0-0.okd-2021-01-23-132511.tar.gz
 
 
 
@@ -24,6 +22,11 @@ COPY package.json .
 
 RUN  npm install \
     && npm audit fix
+
+RUN \
+  python3-pip && \
+  pip install slack-cleaner2
+
 
 COPY LICENSE .
 COPY public ./public
