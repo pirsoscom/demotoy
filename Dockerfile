@@ -24,7 +24,7 @@ RUN  npm install \
     && npm audit fix
 
 RUN \
-  python3-pip && \
+  apt install python3-pip && \
   pip install slack-cleaner2
 
 
