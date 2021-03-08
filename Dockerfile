@@ -25,7 +25,7 @@ RUN  npm install \
 
 RUN \
   apt install -y python3-pip && \
-  pip install slack-cleaner2
+  pip3 install slack-cleaner2
 
 
 COPY LICENSE .
