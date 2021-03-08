@@ -144,10 +144,10 @@ data:
   appid_book: nir5ix68
   appgroupid_sock: p8agtlvy
   appid_sock: wvaw2akr
-  export SLACK_TOKEN: "xoxp-1624757694871-1639736885955-1836502989072-cfa52831b5810d58ab063512e6b90e2b"
-  export SLACK_CHANNEL_1: ".*test.*"
-  export SLACK_CHANNEL_2: ".*test.*"
-  export SLACK_CHANNEL_3: ".*test.*"
+  SLACK_TOKEN: "xoxp-1624757694871-1639736885955-1836502989072-cfa52831b5810d58ab063512e6b90e2b"
+  SLACK_CHANNEL_1: ".*test.*"
+  SLACK_CHANNEL_2: ".*test.*"
+  SLACK_CHANNEL_3: ".*test.*"
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
