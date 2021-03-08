@@ -17,6 +17,7 @@ const configFile = "/var/config/config.json";
 const secretFile = "/var/secret/toy-secret.txt";
 
 const execSync = require('child_process').execSync;
+const { isUndefined } = require('util');
 
 var stress_cpu_hogs = 2;
 var stress_io_hogs = 2;
@@ -59,6 +60,9 @@ var token=process.env.TOKEN;
 var ocp_url=process.env.OCP_URL;
 var sec_token=process.env.SEC_TOKEN;
 
+var slack1 = process.env.SLACK_CHANNEL_1;
+var slack2 = process.env.SLACK_CHANNEL_2;
+var slack3 = process.env.SLACK_CHANNEL_3;
 
 function healthStatus(){
 	if( healthy ) {
@@ -394,6 +398,9 @@ app.get('/maintenance',
 					"stateKubeColor": stateKubeColor, 
 					"version": appVersion, 
 					"sysInfoStr": sysInfoStr,
+					"slack1": slack1,
+					"slack2": slack2,
+					"slack3": slack3,
 				});
 				console.log("Loading Home - Done");
 		} else {
@@ -405,6 +412,64 @@ app.get('/maintenance',
 
 	}
 );
+
+
+
+
+app.get('/delSlack1',  
+	function(req, res) {
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+		console.log("🚀 deleteSlack channel 1 - Start");
+		console.log("---------------------------------------------------------------------------");
+		console.log("env" + slack1);
+		process.env.SLACK_CHANNEL=slack1;
+		console.log("call");
+
+		result=execSync('./scripts/maintenance/2_slack_delete.sh');
+		console.log("done" + result);
+
+		res.redirect('maintenance');
+	}
+);
+
+
+app.get('/delSlack2',  
+	function(req, res) {
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+		console.log("🚀 deleteSlack channel 2 - Start");
+		console.log("---------------------------------------------------------------------------");
+		console.log("env" + slack1);
+		process.env.SLACK_CHANNEL=slack2;
+		console.log("call");
+
+		result=execSync('./scripts/maintenance/2_slack_delete.sh');
+		console.log("done" + result);
+
+		res.redirect('maintenance');
+	}
+);
+
+
+app.get('/delSlack3',  
+	function(req, res) {
+		console.log("");
+		console.log("---------------------------------------------------------------------------");
+		console.log("🚀 deleteSlack channel 3 - Start");
+		console.log("---------------------------------------------------------------------------");
+		console.log("env" + slack1);
+		process.env.SLACK_CHANNEL=slack3;
+		console.log("call");
+
+		result=execSync('./scripts/maintenance/2_slack_delete.sh');
+		console.log("done" + result);
+
+		res.redirect('maintenance');
+	}
+);
+
+
 
 app.get('/home',  
 	function(req, res) {
@@ -501,15 +566,19 @@ app.get('/',
 	function(req, res) {
 		accesstoken = req.query.accesstoken;
 
-		if( accesstoken.toString() ==sec_token.toString() ) {
-			console.log("Loading - Start");
-			accessOK="GoodToGo"
-			res.redirect('loading');
-		} else {
+		if( accesstoken==null ) {
 			console.log("NOT OK........");
 			res.redirect('error');
+		} else {
+			if( accesstoken.toString() ==sec_token.toString() ) {
+				console.log("Loading - Start");
+				accessOK="GoodToGo"
+				res.redirect('loading');
+			} else {
+				console.log("NOT OK........");
+				res.redirect('error');
+			}	
 		}
-
 	}
 );
 

@@ -55,33 +55,30 @@
         
         <div class="row">
             <div class="col-md-4">
-            <p class="lead">Bookinfo <%=token %></p>
+            <p class="lead">Bookinfo</p>
 
 
 
 
-            <form class="form-inline" method="GET" action="simBookinfo">
+            <form class="form-inline" method="GET" action="delSlack1">
                 <div class="input-group-prepend">
-                    <button type="submit" class="btn btn-danger mb-2">Simulate Outage!</button>			  
+                    <button type="submit" class="btn btn-danger mb-2">Purge Slack Channel <%=slack1 %></button>			  
                 </div>
             </form>
 
-
-            <form class="form-inline" method="GET" action="mitigateBookinfo">
-                <button type="submit" class="btn btn-success mb-2">Mitigate Error</button>
-            </form>
-
-            <form class="form-inline" method="GET" action="test1">
+            <form class="form-inline" method="GET" action="delSlack2">
                 <div class="input-group-prepend">
-                    <button type="submit" class="btn btn-primary mb-2">test1</button>
+                    <button type="submit" class="btn btn-danger mb-2">Purge Slack Channel <%=slack2 %></button>			  
                 </div>
             </form>
 
-            <form class="form-inline" method="GET" action="test2">
+            <form class="form-inline" method="GET" action="delSlack3">
                 <div class="input-group-prepend">
-                    <button type="submit" class="btn btn-primary mb-2">test2</button>
+                    <button type="submit" class="btn btn-danger mb-2">Purge Slack Channel <%=slack3 %></button>			  
                 </div>
             </form>
+
+    
         </div>
       
         
